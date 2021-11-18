@@ -8,14 +8,16 @@ import Quote from "../models/Quote";
 
 const AboutScreen: React.FC = () => {
   const [stoicQuote, setStoicQuote] = React.useState<Quote | null>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const loadNewQuote = async () => {
+    setIsLoading(true);
     const quote = await loadQuote();
     setStoicQuote(quote);
+    setIsLoading(false);
   };
 
   React.useEffect(() => {
-    console.log("Mounted about page");
     loadNewQuote();
   }, []);
 
@@ -40,8 +42,14 @@ const AboutScreen: React.FC = () => {
         }}
       >
         <View style={{ justifyContent: "space-between", height: "100%" }}>
-          <Text>{stoicQuote?.body}</Text>
-          <Text>- {stoicQuote?.author}</Text>
+          {!isLoading ? (
+            <>
+              <Text>{stoicQuote?.body}</Text>
+              <Text>- {stoicQuote?.author}</Text>
+            </>
+          ) : (
+            <Text>Loading...</Text>
+          )}
         </View>
       </Pressable>
     </View>
