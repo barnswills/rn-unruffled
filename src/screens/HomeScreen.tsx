@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 import RoutingButton from "../components/RoutingButton";
 
-const styles: StyleSheet = StyleSheet.create({
+const styles = StyleSheet.create({
   homeScreen: {
     flex: 1,
     alignItems: "center",
@@ -18,7 +18,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = (props: IHomeScreenProps) => {
   return (
     <View style={styles.homeScreen}>
       <Text>HomePage</Text>
-      <RoutingButton route="About" content="Go To About page" />
+      <RoutingButton route="About" content="Go To About page?" />
     </View>
   );
 };
